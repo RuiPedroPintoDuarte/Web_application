@@ -1,0 +1,29 @@
+﻿@model Cinema.Models.Historico
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalhes Historico</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Filme)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Filme.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Perfil)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Perfil.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FilmeId">Editar</a> |
+    <a asp-action="Index">Voltar</a>
+</div>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Cinema.Models.Historico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Historico</h1>
+@if (User.IsInRole("Administrador") || User.IsInRole("Funcionário"))
+{
+    <p>
+        <a asp-action="Create">Adicionar</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filme)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfil)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Filme.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Perfil.Username)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FilmeId">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.FilmeId">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.FilmeId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

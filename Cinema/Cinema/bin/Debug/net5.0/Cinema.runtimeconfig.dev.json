@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\rppin\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\rppin\\.nuget\\packages"
+    ]
+  }
+}

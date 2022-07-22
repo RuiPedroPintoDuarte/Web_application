@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Cinema.Models.Horario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Horário</h1>
+
+<p>
+    <a asp-action="Create">Adicionar Horário</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Filme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sala)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filme.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sala.Numero)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SalaId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.SalaId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.SalaId">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

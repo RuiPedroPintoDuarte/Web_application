@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Cinema.Models.Filme>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Filmes</h1>
+@if (User.IsInRole("Administrador") || User.IsInRole("Funcionário"))
+{
+    <p>
+        <a asp-action="Create">Adicionar Filme</a>
+    </p>
+}
+    @if (Model != null)
+    {
+        <div>
+            @Html.DropDownList("Categoria", new SelectList(Model.Select(x => x.Categoria.Nome).Distinct()), "Escolher Categoria")
+        </div>
+
+        @foreach (var item in Model)
+        {<div class="column" style="float:left; padding: 10px;">
+    @if (User.IsInRole("Administrador") || User.IsInRole("Funcionário"))
+    {
+        <div style="float:right; padding: 5px;">
+            <a asp-action="Delete" asp-route-id="@item.Id"><img src="~/Images/Delete.png" width="15" height="15" /></a>
+            <a asp-action="Edit" asp-route-id="@item.Id"><img src="~/Images/edit.png" width="15" height="15" /></a>
+        </div>
+    }
+        <a asp-action="Details" asp-route-id="@item.Id"><img src="~/Images/@Html.DisplayFor(modelItem => item.Foto)" width="250" height="376" /></a>
+        <div style="text-align: center; width: 250px; ">
+            @Html.DisplayFor(modelItem => item.Nome)
+        </div>
+
+    </div>
+        }
+    }
+
+    @section Scripts {
+    }
