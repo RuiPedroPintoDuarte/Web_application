@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Exame2021.Models.Documento>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Documentos</h1>
+
+<p>
+    <a asp-action="Upload">Upload</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                <strong>Nº de Downloads</strong>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                    <td id="c_@item.Id">
+                        @Html.DisplayFor(modelItem => item.Downloads.Count)
+                    </td>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <td>
+                        <a id="Download" asp-controller="Home" asp-action="Download" onclick="Update(@item.Id)" asp-route-id="@item.Id" target="_blank">Download</a>
+                    </td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+@if (SignInManager.IsSignedIn(User))
+{
+    <p>
+        <a asp-controller="Home" asp-action="Down" , asp-route-id="@User.Identity.Name"
+           data-ajax="true" data-ajax-mode="replace" data-ajax-method="post"
+           data-ajax-update="#Table">Meus Downloads</a>
+    </p>
+    <partial action="Down" name="Down" model="new List<Download>()" />
+}
+
+
+@section Scripts{
+    <script>
+        function Update(item) {
+            document.getElementById("c_" + item).innerHTML++;
+        };
+    </script>
+}

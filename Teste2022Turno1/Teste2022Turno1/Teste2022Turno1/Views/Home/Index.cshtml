@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Teste2022Turno1.Models.Filme>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+@if (User.Identity.IsAuthenticated == true)
+{
+    <p>
+        <a asp-action="AddFilme">Introduzir novo Filme</a>
+    </p>
+}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Duração)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr id="Col_@item.Id">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Duração)
+                    </td>
+                    @if (User.Identity.IsAuthenticated == true)
+                    {
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@item.Id" data-ajax="true"
+                               data-ajax-method="post" data-ajax-update="#Col_@item.Id"
+                               data-ajax-confirm="Are you sure?">Delete</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>

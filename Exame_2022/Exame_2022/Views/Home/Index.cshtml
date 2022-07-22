@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Exame_2022.Models.Empresa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Empresas</h1>
+
+<p>
+    <a asp-action="Registo">+</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logotipo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaisID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+        @foreach (var item in Model)
+        {
+
+            <tr id="Col_@item.Id">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logotipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaisID)
+                </td>
+                <td>
+                    <a asp-action="Apagar" asp-route-id="@item.Id" data-ajax="true"
+                       data-ajax-method="post" data-ajax-update="#Col_@item.Id"
+                       data-ajax-confirm="Are you sure?">X</a>
+
+                </td>
+            </tr>
+        }}
+    </tbody>
+</table>

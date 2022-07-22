@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Exame2021.Models.Download>
+
+
+    <table id="Table" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Data)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Documento)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Data)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Documento.Nome)
+                        </td>
+                    </tr>
+                }
+        </tbody>
+            
+    </table>
